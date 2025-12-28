@@ -1,0 +1,30 @@
+body {
+	overflow-x: hidden;
+	direction: rtl;
+}
+
+.owl-carousel {
+	direction: ltr;
+}
+
+.owl-carousel .owl-nav,
+.owl-carousel .owl-dots,
+.owl-carousel .owl-item {
+	direction: rtl;
+}
+
+.bootstrap-select .dropdown-toggle .filter-option {
+	text-align: right;
+}
+
+.list-unstyled {
+	padding-right: 0;
+}
+
+.video-one__counter-shape-2 {
+	clip-path: polygon(0 0, 100% 0, 0 99%, 0 100%);
+}
+
+.project-one__content {
+	clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%);
+}

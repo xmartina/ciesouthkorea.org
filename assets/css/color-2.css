@@ -1,0 +1,8 @@
+:root {
+    --corle-base: #efe058;
+    --corle-base-rgb: 239, 224, 88;
+}
+
+.preloader__image {
+    background-image: url(../images/loader-2.png);
+}
