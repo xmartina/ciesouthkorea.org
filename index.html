@@ -17,6 +17,10 @@
             :root {
                 --cie-section-pad-y: clamp(64px, 6vw, 104px);
                 --cie-card-radius: 18px;
+
+                /* Primary brand color */
+                --cie-primary: #031b7e;
+                --cie-primary-rgb: 3, 27, 126;
             }
 
             .cie-section {
@@ -33,10 +37,35 @@
                 text-transform: uppercase;
             }
 
+            /* Primary color overrides (keep existing content, just theme it) */
+            a:hover,
+            a:focus {
+                color: var(--cie-primary);
+            }
+
+            .thm-btn,
+            .contact-form__btn,
+            .main-menu-three__consultant-btn {
+                background-color: var(--cie-primary);
+                border-color: var(--cie-primary);
+            }
+
+            .thm-btn:hover,
+            .contact-form__btn:hover,
+            .main-menu-three__consultant-btn:hover {
+                background-color: #02155f;
+                border-color: #02155f;
+            }
+
+            .main-header-three__social a:hover span,
+            .site-footer__social-box a:hover i {
+                color: var(--cie-primary);
+            }
+
             /* Premium cards for content blocks without changing template HTML structure */
             .cie-cards .how-it-work__single {
                 border-radius: var(--cie-card-radius);
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(var(--cie-primary-rgb), 0.18);
                 background: rgba(255, 255, 255, 0.03);
                 backdrop-filter: blur(8px);
                 -webkit-backdrop-filter: blur(8px);
@@ -203,7 +232,7 @@
                 </div>
 
                 <div class="main-header-three__top">
-                    <div class="container">
+                    <div class="main-header-three__top-wrapper">
                         <div class="main-header-three__top-inner">
                             <div class="main-header-three__top-left">
                                 <div class="main-header-three__location-box">
@@ -268,7 +297,7 @@
                 </div>
 
                 <nav class="main-menu main-menu-three">
-                    <div class="container">
+                    <div class="main-menu-three__wrapper">
                         <div class="main-menu-three__wrapper-inner">
                             <div class="main-menu-three__left">
                                 <div class="main-menu-three__logo">
