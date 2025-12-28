@@ -12,6 +12,62 @@
             section[id] {
                 scroll-margin-top: var(--cie-header-offset, 96px);
             }
+
+            /* Landing page polish (PDF-only): tighter hierarchy + premium spacing */
+            :root {
+                --cie-section-pad-y: clamp(64px, 6vw, 104px);
+                --cie-card-radius: 18px;
+            }
+
+            .cie-section {
+                padding-top: var(--cie-section-pad-y);
+                padding-bottom: var(--cie-section-pad-y);
+            }
+
+            .cie-section .section-title__title {
+                letter-spacing: -0.02em;
+            }
+
+            .cie-section .section-title__tagline {
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+
+            /* Premium cards for content blocks without changing template HTML structure */
+            .cie-cards .how-it-work__single {
+                border-radius: var(--cie-card-radius);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                height: 100%;
+            }
+
+            .cie-cards .how-it-work__title {
+                margin-top: 10px;
+            }
+
+            .cie-cards .how-it-work__text-2 {
+                margin-bottom: 0;
+                opacity: 0.92;
+            }
+
+            /* “About” readability */
+            #about .about-three__text {
+                font-size: 16px;
+                line-height: 1.75;
+                margin-bottom: 14px;
+            }
+
+            /* Contact form spacing */
+            #contact .contact-four__form-box {
+                border-radius: var(--cie-card-radius);
+            }
+
+            /* Reduce visual noise: remove numbered dots used by template in this landing */
+            .how-it-work__count {
+                display: none;
+            }
         </style>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -360,9 +416,9 @@
             <!--Main Slider Three End-->
 
             <!--About / What We Do Start-->
-            <section class="about-three" id="about">
+            <section class="about-three cie-section" id="about">
                 <div class="container">
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="col-xl-6">
                             <div class="about-three__left">
                                 <div class="about-three__img-box">
@@ -394,15 +450,13 @@
                             <div class="about-three__right">
                                 <div class="section-title text-left">
                                     <span class="section-title__tagline"
-                                        >About CIE South Korea</span
+                                        >About</span
                                     >
                                     <h2 class="section-title__title">
-                                        Center for Innovation and
-                                        Entrepreneurship
-                                        <br />
-                                        (CIE) South Korea
+                                        CIE South Korea
                                     </h2>
                                 </div>
+
                                 <p class="about-three__text">
                                     The Center for Innovation and
                                     Entrepreneurship (CIE) South Korea is the
@@ -430,22 +484,32 @@
                                     structured international opportunities and
                                     impact-driven initiatives.
                                 </p>
+
+                                <div class="mt-4">
+                                    <a href="#contact" class="thm-btn"
+                                        >Contact & Connect</a
+                                    >
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="how-it-work how-it-work-two" id="what-we-do">
+            <section
+                class="how-it-work how-it-work-two cie-section cie-cards"
+                id="what-we-do"
+            >
                 <div class="container">
                     <div class="section-title text-center">
                         <span class="section-title__tagline">What We Do</span>
                         <h2 class="section-title__title">
-                            A strategic coordination and enablement platform
+                            Coordinating South Korea’s innovation ecosystem with
+                            global opportunities
                         </h2>
                     </div>
                     <div class="how-it-work__bottom">
-                        <div class="row">
+                        <div class="row g-4">
                             <div
                                 class="col-xl-4 col-lg-4 wow fadeInUp"
                                 data-wow-delay="100ms"
@@ -557,18 +621,20 @@
             <!--About / What We Do End-->
 
             <!--Programmes & Initiatives Start-->
-            <section class="how-it-work how-it-work-two" id="programmes">
+            <section
+                class="how-it-work how-it-work-two cie-section cie-cards"
+                id="programmes"
+            >
                 <div class="container">
                     <div class="section-title text-center">
-                        <span class="section-title__tagline"
-                            >Programmes & Initiatives</span
-                        >
+                        <span class="section-title__tagline">Programmes</span>
                         <h2 class="section-title__title">
-                            Structured frameworks aligned with CIE Global
+                            Frameworks, initiatives, programmes, and
+                            projects—aligned with CIE Global
                         </h2>
                     </div>
                     <div class="how-it-work__bottom">
-                        <div class="row">
+                        <div class="row g-4">
                             <div
                                 class="col-xl-12 wow fadeInUp"
                                 data-wow-delay="100ms"
@@ -684,16 +750,20 @@
             <!--Programmes & Initiatives End-->
 
             <!--Locations Start-->
-            <section class="how-it-work how-it-work-two" id="locations">
+            <section
+                class="how-it-work how-it-work-two cie-section cie-cards"
+                id="locations"
+            >
                 <div class="container">
                     <div class="section-title text-center">
                         <span class="section-title__tagline">Locations</span>
                         <h2 class="section-title__title">
-                            Global & country partnership focus areas
+                            Where CIE South Korea focuses its coordinated
+                            engagement
                         </h2>
                     </div>
                     <div class="how-it-work__bottom">
-                        <div class="row">
+                        <div class="row g-4">
                             <div
                                 class="col-xl-12 wow fadeInUp"
                                 data-wow-delay="100ms"
@@ -786,18 +856,19 @@
             <!--Locations End-->
 
             <!--Partnerships Start-->
-            <section class="how-it-work how-it-work-two" id="partnerships">
+            <section
+                class="how-it-work how-it-work-two cie-section cie-cards"
+                id="partnerships"
+            >
                 <div class="container">
                     <div class="section-title text-center">
-                        <span class="section-title__tagline"
-                            >Partnerships & Collaboration</span
-                        >
+                        <span class="section-title__tagline">Partnership</span>
                         <h2 class="section-title__title">
-                            Who we collaborate with
+                            Collaboration designed for long-term impact
                         </h2>
                     </div>
                     <div class="how-it-work__bottom">
-                        <div class="row">
+                        <div class="row g-4">
                             <div
                                 class="col-xl-6 col-lg-6 wow fadeInUp"
                                 data-wow-delay="100ms"
@@ -853,18 +924,19 @@
             <!--Partnerships End-->
 
             <!--Phased Rollout & Implementation Approach Start-->
-            <section class="how-it-work how-it-work-two" id="implementation">
+            <section
+                class="how-it-work how-it-work-two cie-section cie-cards"
+                id="implementation"
+            >
                 <div class="container">
                     <div class="section-title text-center">
-                        <span class="section-title__tagline"
-                            >Implementation Approach</span
-                        >
+                        <span class="section-title__tagline">Rollout</span>
                         <h2 class="section-title__title">
-                            Phased rollout for coherence and measurable impact
+                            A phased, adaptive implementation approach
                         </h2>
                     </div>
                     <div class="how-it-work__bottom">
-                        <div class="row">
+                        <div class="row g-4">
                             <div
                                 class="col-xl-12 wow fadeInUp"
                                 data-wow-delay="100ms"
@@ -907,7 +979,7 @@
             <!--Phased Rollout & Implementation Approach End-->
 
             <!--Contact One STart-->
-            <section class="contact-four" id="contact">
+            <section class="contact-four cie-section" id="contact">
                 <div
                     class="contact-four__bg"
                     style="
