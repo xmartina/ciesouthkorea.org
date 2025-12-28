@@ -1,6 +1,18 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <style>
+            /* One-page UX polish: smooth scroll + sticky header offset */
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: var(--cie-header-offset, 96px);
+            }
+
+            /* Ensure anchor targets don't hide behind the sticky header in all browsers */
+            section[id] {
+                scroll-margin-top: var(--cie-header-offset, 96px);
+            }
+        </style>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
@@ -1394,6 +1406,79 @@
         ></a>
 
         <script src="assets/vendors/jquery/jquery-3.6.4.min.js"></script>
+        <script>
+            (function () {
+                function getHeaderOffset() {
+                    // Prefer the sticky header height when it's visible, fallback to main header height.
+                    var sticky = document.querySelector(".stricky-header");
+                    var mainHeader = document.querySelector(
+                        "header.main-header-three",
+                    );
+                    var el = sticky || mainHeader;
+
+                    if (!el) return 96;
+
+                    var rect = el.getBoundingClientRect();
+                    var h = Math.round(rect.height || 0);
+
+                    // Clamp to a reasonable range to avoid weird values
+                    if (!h || h < 56) return 96;
+                    if (h > 180) return 120;
+                    return h;
+                }
+
+                function applyOffset() {
+                    var offset = getHeaderOffset();
+                    document.documentElement.style.setProperty(
+                        "--cie-header-offset",
+                        offset + "px",
+                    );
+                }
+
+                // Update offset on load + resize (covers sticky header state)
+                window.addEventListener("load", applyOffset, { passive: true });
+                window.addEventListener("resize", applyOffset, {
+                    passive: true,
+                });
+
+                // Also apply as early as possible
+                applyOffset();
+
+                // Enhanced smooth scroll with correct offset, without relying on template classes
+                document.addEventListener(
+                    "click",
+                    function (e) {
+                        var a = e.target.closest('a[href^="#"]');
+                        if (!a) return;
+
+                        var href = a.getAttribute("href");
+                        if (!href || href === "#" || href === "#0") return;
+
+                        var target = document.querySelector(href);
+                        if (!target) return;
+
+                        e.preventDefault();
+
+                        applyOffset();
+                        var offset = parseInt(
+                            getComputedStyle(document.documentElement)
+                                .getPropertyValue("--cie-header-offset")
+                                .trim(),
+                            10,
+                        );
+                        if (!offset || isNaN(offset)) offset = 96;
+
+                        var top =
+                            window.pageYOffset +
+                            target.getBoundingClientRect().top -
+                            offset;
+
+                        window.scrollTo({ top: top, behavior: "smooth" });
+                    },
+                    { passive: false },
+                );
+            })();
+        </script>
         <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendors/jarallax/jarallax.min.js"></script>
         <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
